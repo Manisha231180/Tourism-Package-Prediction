@@ -65,5 +65,3 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python tourism_project/hosting/hosting.py
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python tourism_project/hosting/hosting.py
