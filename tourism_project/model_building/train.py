@@ -11,7 +11,7 @@ from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
 import mlflow
 import os
 
-mlflow.set_tracking_uri("http://localhost:8080")
+mlflow.set_tracking_uri("file:./mlruns")
 mlflow.set_experiment("Tourism-Package-Prediction-Experiment")
 
 # Hugging Face API authentication
@@ -50,7 +50,7 @@ categorical_features = [
     'Designation'
 ]
 # Set the class weight to handle class imbalance
-class_weight = ytrain.value_counts()[0] / ytrain.value_counts()[1]
+class_weight = ytrain.iloc[:,0].value_counts()[0] / ytrain.iloc[:,0].value_counts()[1]
 
 # Define the preprocessing steps
 preprocessor = make_column_transformer(
@@ -119,7 +119,7 @@ with mlflow.start_run():
     print(f"Model saved as artifact at: {model_path}")
 
     # Upload to Hugging Face
-    repo_id = "<Manisha231180/tourism_package_model"
+    repo_id = "Manisha231180/tourism-package-model"
     repo_type = "model"
 
     # Step 1: Check if the space exists
